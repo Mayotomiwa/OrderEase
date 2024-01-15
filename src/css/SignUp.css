@@ -1,0 +1,84 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.form-input {
+    border-top: 0;
+    border-bottom: 1px solid #000;
+    background: none;
+    width: 70%;
+}
+.name {
+    width: 70%;
+}
+.form-btn {
+    width: 70%;
+    height: 50px;
+    padding: 15px;
+    overflow: hidden;
+}
+.form-google-btn {
+    width: 68%;
+    padding: 15px;
+    margin-left: 12px;
+}
+
+.form-text-btn {
+    color: #db4444;
+    font-family: Poppins;
+}
+
+.login-btn {
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+}
+
+.login-btn2 {
+    color: #000;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 500;
+}
+.alert {
+    width: 70%;
+}
+
+@media only screen and (max-width: 600px) {
+    .form-input {
+        border-top: 0;
+        border-bottom: 1px solid #000;
+        background: none;
+        padding: 2px;
+        width: 100%;
+    }
+
+    .form-btn {
+        width: 100%;
+        padding: 10px;
+        margin-right: 5px;
+    }
+    .form-google-btn {
+        width: 100%;
+        padding: 10px;
+        margin-left: 8px;
+        margin-right: 5px;
+    }
+
+    .form-text-btn {
+        font-size: 15px;
+        width: 100%;
+    }
+
+    .form-text {
+        text-align: center;
+        justify-content: center;
+    }
+    .google-text {
+        font-size: 15px;
+    }
+    .alert {
+        width: 100%;
+    }
+}

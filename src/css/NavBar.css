@@ -1,0 +1,123 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+.nav {
+    background-color: #F8E8E8;
+    padding: 1.2rem;
+    margin-right: 2rem;
+    margin-left: 2rem;
+}
+
+.title {
+    font-family: Inter;
+    font-weight: 700;
+}
+
+.titleColor {
+    font-family: Inter;
+    font-weight: 700;
+    color: #db4444;
+}
+
+.nav-item {
+    font-weight: bold;
+    font-family: Poppins;
+    margin-right: 2.5rem;
+}
+
+.nav-link.active {
+    text-decoration: none;
+    position: relative;
+    color: #db4444 !important;
+}
+
+.nav-link.active::after {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background-color: #db4444;
+    margin-top: 1rem;
+}
+
+.search {
+    background: var(--Secondary, #F5F5F5);
+}
+
+.search-form {
+    position: relative;
+    width: 20%;
+    background-color: #fff;
+    margin-top: 10px;
+}
+
+.search-results {
+    margin-top: 20px;
+    padding: 10px;
+    max-height: 200px;
+    overflow-y: auto;
+    width: 20%;
+    position: absolute;
+    top: 60px;
+    left: 1250px;
+    z-index: 1000;
+}
+
+.search-results .list-group-item {
+    border: none;
+    background-color: #fff;
+    cursor: pointer;
+}
+
+.search-results .list-group-item:hover {
+    background-color: #db4444;
+    color: #fff;
+}
+
+
+
+input::-webkit-input-placeholder {
+    /* Chrome/Opera/Safari */
+    font-family: Poppins;
+}
+
+input::-moz-placeholder {
+    /* Firefox 19+ */
+    font-family: Poppins;
+}
+
+input:-ms-input-placeholder {
+    /* IE 10+ */
+    font-family: Poppins;
+}
+
+input:-moz-placeholder {
+    /* Firefox 18- */
+    font-family: Poppins;
+}
+
+@media only screen and (max-width: 600px) {
+    .search-form {
+        position: relative;
+        width: 100%;
+    }
+
+    .search-results div {
+        width: 100%;
+        /* padding: 10px 25px; */
+        background-color: #fff;
+    }
+
+    .search-results {
+        position: absolute;
+        z-index: 1;
+        top: 250px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 90%;
+    }
+    
+
+}

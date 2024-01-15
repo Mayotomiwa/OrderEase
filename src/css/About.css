@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
+
+.story-container {
+    display: inline-flex;
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10%;
+    gap: 2.5rem;
+}
+
+.story {
+    color: #000;
+    text-align: justify;
+    font-family: Inter;
+    font-size: 3.375rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 4rem;
+    letter-spacing: 0.2025rem;
+}
+
+.storyline {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 1.5rem;
+}
+
+.line1 {
+    color: #000;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.625rem;
+    text-align: justify;
+}
+
+.line2 {
+    color: #000;
+    font-family: Poppins;
+    font-size: 1rem;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1.625rem;
+    text-align: justify;
+}
+
+.stat-container {
+    display: flex;
+    padding: 1em;
+}
+
+.stats-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-right: 1em;
+    justify-content: space-between;
+    width: 16.875rem;
+    height: 15.625rem;
+    border-radius: 0.25rem;
+    background: none;
+    justify-content: center;
+    align-items: center;
+    border: 0.1px solid #000;
+}
+
+.statText {
+    color: #000;
+    font-family: Poppins;
+    text-transform: uppercase;
+    font-size: 1.5rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 1.75rem;
+    text-align: center;
+}
+
+.projections {
+    color: #000;
+    text-align: justify;
+    font-family: Inter;
+    font-size: 2rem;
+    font-style: normal;
+    font-weight: 600;
+    line-height: 4rem;
+    letter-spacing: 0.2025rem;
+    text-align: center;
+    text-transform: uppercase;
+}
+
+.team {
+    width: 400px;
+}
+
+.swiper .swiper-pagination {
+    margin-top: 1.5rem;
+    position: relative;
+}
+
+.swiper .swiper-pagination .swiper-pagination-bullet {
+    width: 12px;
+    height: 12px;
+    background-color: #696969;
+    opacity: 1;
+    margin-right: 0.8rem;
+}
+
+.swiper .swiper-pagination .swiper-pagination-bullet-active {
+    background-color: #db4444;
+}
