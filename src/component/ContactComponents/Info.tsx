@@ -1,8 +1,10 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Card, Col, Container, Row } from "react-bootstrap";
-import Mail from "../../icons/mail";
-import Phone from "../../icons/phone";
-import ContactOptionsLoader from "../../loaders/ContactOptions";
+
+const ContactOptionsLoader = React.lazy(() => import('../../loaders/ContactOptions'));
+const Phone = React.lazy(() => import('../../icons/phone'));
+const Mail = React.lazy(() => import('../../icons/mail'));
+
 
 export default function Info() {
     const [loading, setLoading] = useState<boolean>(true)

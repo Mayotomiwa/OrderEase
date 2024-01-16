@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Modal, Row, Stack } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../contexts/CartContext';
 import { useWish } from '../../contexts/WishContext';
 import { fetchAllProducts } from '../../data/APIs';
-import Wish from '../../icons/wishlist';
-import WishFill from '../../icons/wishlistfill';
-import ProductLoader2 from '../../loaders/AllProductsLoader';
 import { Product } from '../../types/Products';
+
+const Wish = React.lazy(() => import('../../icons/wishlist'));
+const WishFill = React.lazy(() => import('../../icons/wishlistfill'));
+const ProductLoader2 = React.lazy(() => import('../../loaders/AllProductsLoader'));
 
 
 type ViewProductProps = {

@@ -1,8 +1,11 @@
+import React from 'react'
 import { Button, Card, Container } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import WishItems from '../component/WishListComponents/WishItems'
 import { useWish } from '../contexts/WishContext'
 import '../css/Cart.css'
+
+const WishItems = React.lazy(() => import('../component/WishListComponents/WishItems'));
+
 
 export default function WishList() {
     const navigate = useNavigate();

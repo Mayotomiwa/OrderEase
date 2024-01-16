@@ -1,12 +1,13 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navbar as BSNavBar, Button, Container, Nav, Stack } from "react-bootstrap";
 import { NavLink, useLocation } from "react-router-dom";
 import { useCart } from "../../contexts/CartContext";
 import '../../css/NavBar.css';
-import Cart from "../../icons/cart";
-import NavbarLoader from "../../loaders/NavBarLoader";
-import SearchBar from "./SearchBar";
-import Separator from "./seperator";
+
+const Cart = React.lazy(() => import('../../icons/cart'));
+const NavbarLoader = React.lazy(() => import('../../loaders/NavBarLoader'));
+const SearchBar = React.lazy(() => import('./SearchBar'));
+const Separator = React.lazy(() => import('./seperator'));
 
 export default function NavBar() {
     const location = useLocation();

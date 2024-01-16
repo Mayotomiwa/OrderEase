@@ -1,7 +1,13 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Row, Stack } from 'react-bootstrap';
-import ProductAdLoader from '../../loaders/FeaturedLoader';
-import TextLoader from '../../loaders/TextLoader';
+import Featured1 from '../../assets/Featured1.png';
+import Featured2 from '../../assets/Featured2.png';
+import Featured3 from '../../assets/Featured3.png';
+import Featured4 from '../../assets/Featured4.png';
+
+const ProductAdLoader = React.lazy(() => import('../../loaders/FeaturedLoader'));
+const TextLoader = React.lazy(() => import('../../loaders/TextLoader'));
+
 
 export default function Featured() {
     const [loading, setLoading] = useState<boolean>(true)
@@ -43,18 +49,18 @@ export default function Featured() {
                         <Container fluid className="d-flex justify-content-center align-items-center my-5">
                             <Row className='justify-content-center'>
                                 <Col lg={5} md={12} className='mb-4'>
-                                    <img src='src/assets/Featured1.png' className='img-fluid' alt='' />
+                                    <img src= {Featured1} className='img-fluid' alt='' />
                                 </Col>
                                 <Col lg={6} md={12}>
                                     <Row>
                                         <Col xs={12} lg={10} className='mb-4'>
-                                            <img src='src/assets/Featured2.png' className='img-fluid' alt='' />
+                                            <img src= {Featured2} className='img-fluid' alt='' />
                                         </Col>
                                         <Col xs={6} lg={5} className='mb-4'>
-                                            <img src='src/assets/Featured3.png' className='img-fluid' alt='' />
+                                            <img src= {Featured3} className='img-fluid' alt='' />
                                         </Col>
                                         <Col xs={6} lg={5} className='mb-4'>
-                                            <img src='src/assets/Featured4.png' className='img-fluid' alt='' />
+                                            <img src= {Featured4} className='img-fluid' alt='' />
                                         </Col>
                                     </Row>
                                 </Col>

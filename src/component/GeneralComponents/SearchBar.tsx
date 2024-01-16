@@ -1,10 +1,12 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from 'react';
+import React, { ChangeEvent, FormEvent, useEffect, useState } from 'react';
 import { Button, Form, ListGroup } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import '../../css/NavBar.css';
 import { fetchAllProducts } from '../../data/APIs';
-import Search from '../../icons/search';
 import { Product } from '../../types/Products';
+
+const Search = React.lazy(() => import('../../icons/search'));
+
 
 export default function SearchBar() {
     const [searchTerm, setSearchTerm] = useState('');

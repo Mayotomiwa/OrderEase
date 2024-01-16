@@ -1,11 +1,13 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Container, Stack } from 'react-bootstrap'
 import { useCart } from '../../contexts/CartContext'
 import { fetchAllProducts } from '../../data/APIs'
-import CartLoader from '../../loaders/CartLoader'
 import { Product } from '../../types/Products'
 import currency from '../../utils/currency'
-import CartItem from './CartItem'
+
+const CartLoader = React.lazy(() => import('../../loaders/CartLoader'));
+const CartItem = React.lazy(() => import('./CartItem'));
+
 
 export default function CheckOut() {
     const [confirm, setConfirm] = useState<boolean>(false)

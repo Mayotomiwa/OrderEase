@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import TextContentLoader from '../../loaders/AboutLoader';
+
+const TextContentLoader = React.lazy(() => import('../../loaders/AboutLoader'));
+
 
 export default function Story() {
     const [loading, setLoading] = useState<boolean>(true)

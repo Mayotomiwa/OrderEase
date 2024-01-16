@@ -1,10 +1,14 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Container, Form, Row } from 'react-bootstrap';
+import { useNavigate } from 'react-router-dom';
 import '../../css/Footer.css';
-import FooterLoader from '../../loaders/FooterLoader';
+
+const FooterLoader = React.lazy(() => import('../../loaders/FooterLoader'));
+
 
 export default function Footer() {
-    const [loading, setLoading] = useState<boolean>(true)
+    const [loading, setLoading] = useState<boolean>(true);
+    const navigate = useNavigate();
 
 
     useEffect(() => {
@@ -18,7 +22,7 @@ export default function Footer() {
     return (
         <>
             {!loading ? (
-                <div id="footer">
+                <Container fluid id="footer">
                     <div className="footer-top">
                         <Container>
                             <Row>
@@ -67,16 +71,16 @@ export default function Footer() {
                                 <div className="col-lg-2 col-md-6">
                                     <div className="footer-info">
                                         <h3>Account</h3>
-                                        <p className='subscribe'>
+                                        <p onClick={() => {navigate('/profile')}} className='subscribe'>
                                             My Account
                                         </p>
-                                        <p className='subscribe'>
+                                        <p onClick={() => {navigate('/signup')}} className='subscribe'>
                                             LogIn / Register
                                         </p>
-                                        <p className='subscribe'>
+                                        <p onClick={() => {navigate('/cart')}} className='subscribe'>
                                             Cart
                                         </p>
-                                        <p className='subscribe'>
+                                        <p onClick={() => {navigate('/wishlist')}} className='subscribe'>
                                             Wishlist
                                         </p>
 
@@ -94,7 +98,7 @@ export default function Footer() {
                                         <p className='subscribe'>
                                             FAQ
                                         </p>
-                                        <p className='subscribe'>
+                                        <p onClick={() => {navigate('/contact')}} className='subscribe'>
                                             Contact
                                         </p>
 
@@ -121,7 +125,7 @@ export default function Footer() {
                             <span style={{ color: '#db4444' }}>Designed by:</span><span style={{ fontStyle: 'italic' }}> Oluseyi Mayotomiwa Immanuel</span>
                         </div>
                     </Container>
-                </div>
+                </Container>
 
             ) : (
                 <FooterLoader />

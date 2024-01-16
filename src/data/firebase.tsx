@@ -2,20 +2,21 @@ import { initializeApp } from "firebase/app";
 import { getAuth, GoogleAuthProvider } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
-
 const firebaseConfig = {
-    apiKey: "AIzaSyAa6LyaJTHOWurEZaRKy0I1VV0r-UVdtEc",
-    authDomain: "auth-orderease-development.firebaseapp.com",
-    projectId: "auth-orderease-development",
-    storageBucket: "auth-orderease-development.appspot.com",
-    messagingSenderId: "83305460807",
-    appId: "1:83305460807:web:6a68a3e4e356bd2b99ed62"
+    apiKey: import.meta.env.VITE_REACT_APP_API_KEY,
+    authDomain: import.meta.env.VITE_REACT_APP_AUTH_DOMAIN,
+    projectId: import.meta.env.VITE_REACT_APP_PROJECT_ID,
+    storageBucket: import.meta.env.VITE_REACT_APP_STORAGE_BUCKET,
+    messagingSenderId: import.meta.env.VITE_REACT_APP_MESSAGING_SENDER_ID,
+    appId: import.meta.env.VITE_REACT_APP_APP_ID,
+    measurementId: import.meta.env.VITE_REACT_APP_MEASUREMENT_ID
 };
 
 const app = initializeApp(firebaseConfig);
 
-export const auth = getAuth(app);
-export const db = getFirestore(app);
-export const provider = new GoogleAuthProvider()
+const auth = getAuth(app);
+const db = getFirestore(app);
+const provider = new GoogleAuthProvider()
 
-export default app;
+export { app, auth, db, provider };
+

@@ -1,18 +1,20 @@
-import { useEffect, useState } from 'react';
-import { Col, Container, ListGroup, Row } from 'react-bootstrap';
+import React, { useEffect, useState } from 'react';
+import { Button, Col, Container, ListGroup, Offcanvas, Row } from 'react-bootstrap';
 import { useAuth } from '../../contexts/AuthContext';
-import ContactOptionsLoader from '../../loaders/ContactOptions';
-import ProfileLoader from '../../loaders/ProfileLoader';
-import AccountManagement from './AccountManagement';
-import MyAccounts from './MyAccounts';
-import Orders from './Orders';
-import SignOut from './SignOut';
+import SavedItems from './SavedItems';
 
-
+const ContactOptionsLoader = React.lazy(() => import('../../loaders/ContactOptions'));
+const ProfileLoader = React.lazy(() => import('../../loaders/ProfileLoader'));
+const Hamburger = React.lazy(() => import('../../icons/ProfileMenu'));
+const AccountManagement = React.lazy(() => import('./AccountManagement'));
+const MyAccounts = React.lazy(() => import('./MyAccounts'));
+const Orders = React.lazy(() => import('./Orders'));
+const SignOut = React.lazy(() => import('./SignOut'));
 
 export default function Accounts() {
     const [selectedItem, setSelectedItem] = useState('My Account');
     const [loading, setLoading] = useState<boolean>(true)
+    const [show, setShow] = useState(false);
     const auth = useAuth();
 
     if (!auth) {
@@ -23,6 +25,7 @@ export default function Accounts() {
 
     function handleItemClick(item: string) {
         setSelectedItem(item);
+        setShow(false);
     }
     useEffect(() => {
         const t = setTimeout(() => {
@@ -33,21 +36,40 @@ export default function Accounts() {
         }
     }, []);
 
+    const listGroup = (
+        <ListGroup className=''>
+            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('My Account')}>My Account</ListGroup.Item>
+            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Orders')}>Orders</ListGroup.Item>
+            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Vouchers')}>Vouchers</ListGroup.Item>
+            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Saved Items')}>Saved Items</ListGroup.Item>
+            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Account Management')}>Account Management</ListGroup.Item>
+            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Address Book')}>Address Book</ListGroup.Item>
+            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Log Out')}>Log Out</ListGroup.Item>
+        </ListGroup>
+    );
+
     return (
         <Container className='p-3 mt-4'>
             <Row>
                 {!loading ? (
-                    <Col md={4} lg={4} xs={4} className='side-bar me-auto'>
-                        <ListGroup className=''>
-                            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('My Account')}>My Account</ListGroup.Item>
-                            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Orders')}>Orders</ListGroup.Item>
-                            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Vouchers')}>Vouchers</ListGroup.Item>
-                            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Saved Items')}>Saved Items</ListGroup.Item>
-                            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Account Management')}>Account Management</ListGroup.Item>
-                            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Address Book')}>Address Book</ListGroup.Item>
-                            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Log Out')}>Log Out</ListGroup.Item>
-                        </ListGroup>
-                    </Col>
+                    <>
+                        <Col md={4} lg={4} className='d-none d-md-block side-bar me-auto'>
+                            {listGroup}
+                        </Col>
+                        <Col md={4} lg={4} xs={4} className='d-md-none'>
+                            <Button variant="text" onClick={() => setShow(true)}>
+                                <Hamburger />
+                            </Button>
+                            <Offcanvas show={show} onHide={() => setShow(false)}>
+                                <Offcanvas.Header closeButton>
+                                    <Offcanvas.Title>Menu</Offcanvas.Title>
+                                </Offcanvas.Header>
+                                <Offcanvas.Body>
+                                    {listGroup}
+                                </Offcanvas.Body>
+                            </Offcanvas>
+                        </Col>
+                    </>
                 ) : (
                     <Col md={4} lg={4} xs={4}>
                         <ContactOptionsLoader />
@@ -70,9 +92,15 @@ export default function Accounts() {
                             <SignOut name={currentUser?.displayName || 'Not Logged in'} email={currentUser?.email || ''} />
                         ) : selectedItem === 'Account Management' ? (
                             <AccountManagement />
-                        ) : (
-                            <div>Display content for other items here</div>
-                        )}
+                        ) :
+                            selectedItem === 'Saved Items' ? (
+                                <>
+                                <h3>Saved Items</h3>
+                                <SavedItems />
+                                </>
+                            ) : (
+                                <div>Coming Soon</div>
+                            )}
                     </Col>
 
                 ) : (

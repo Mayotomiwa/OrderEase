@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import ServiceLoader from '../../loaders/ServiceLoader';
+
+const ServiceLoader = React.lazy(() => import('../../loaders/ServiceLoader'));
+
 
 export default function Services() {
     const [loading, setLoading] = useState<boolean>(true)

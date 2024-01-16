@@ -1,9 +1,9 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Alert, Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import ResetLoader from '../../loaders/ResetLoader';
 
+const ResetLoader = React.lazy(() => import('../../loaders/ResetLoader'));
 
 export default function ForgotPasswordForm() {
     const emailRef = useRef<HTMLInputElement | null>(null);

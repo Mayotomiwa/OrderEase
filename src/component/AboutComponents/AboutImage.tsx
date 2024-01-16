@@ -1,5 +1,7 @@
-import { useEffect, useState } from "react";
-import ImageLoader from "../../loaders/ImageLoader";
+import React, { useEffect, useState } from "react";
+import AboutImg from '../../assets/About.png';
+
+const ImageLoader = React.lazy(() => import('../../loaders/ImageLoader'));
 
 export default function AboutImage() {
     const [loading, setLoading] = useState<boolean>(true)
@@ -16,7 +18,7 @@ export default function AboutImage() {
     return (
         <>
             {!loading ?
-                <img src='src/assets/About.png' className='img-fluid' alt='' /> : <ImageLoader />
+                <img src= {AboutImg} className='img-fluid' alt='' /> : <ImageLoader />
             }
         </>
     )

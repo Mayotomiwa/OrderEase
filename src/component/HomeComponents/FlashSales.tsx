@@ -1,15 +1,17 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Button, Container, Stack } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../contexts/CartContext';
 import { useWish } from '../../contexts/WishContext';
 import { fetchData } from '../../data/APIs';
-import Wish from '../../icons/wishlist';
-import WishFill from '../../icons/wishlistfill';
-import ProductLoader1 from '../../loaders/FlashSalesLoader';
-import TextLoader from '../../loaders/TextLoader';
 import { Product } from '../../types/Products';
 import currency from '../../utils/currency';
+
+const Wish = React.lazy(() => import('../../icons/wishlist'));
+const WishFill = React.lazy(() => import('../../icons/wishlistfill'));
+const ProductLoader1 = React.lazy(() => import('../../loaders/FlashSalesLoader'));
+const TextLoader = React.lazy(() => import('../../loaders/TextLoader'));
+
 
 type FlashSalesProps = {
     onButtonClick: () => void;

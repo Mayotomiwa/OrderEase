@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import 'swiper/css';
 import 'swiper/css/autoplay';
@@ -6,7 +6,11 @@ import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 import { Autoplay, EffectFade, Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import SwiperLoader from '../../loaders/Adloader';
+import Slide1 from '../../assets/Slide1.png';
+import Slide2 from '../../assets/Slide2.png';
+import Slide3 from '../../assets/Slide3.png';
+
+const SwiperLoader = React.lazy(() => import('../../loaders/Adloader'));
 
 export default function SwiperFile() {
     const [loading, setLoading] = useState<boolean>(true)
@@ -34,13 +38,13 @@ export default function SwiperFile() {
                             style={{ width: '100%', marginTop: '2%', backgroundColor: 'black' }}
                         >
                             <SwiperSlide>
-                                <img src='src/assets/Slide1.png' className='img-fluid' alt='' />
+                                <img src= {Slide1} className='img-fluid' alt='' />
                             </SwiperSlide>
                             <SwiperSlide>
-                                <img src='src/assets/Slide2.png' className='img-fluid' alt='' />
+                                <img src= {Slide2} className='img-fluid' alt='' />
                             </SwiperSlide>
                             <SwiperSlide>
-                                <img src='src/assets/Slide3.png' className='img-fluid' alt='' />
+                                <img src= {Slide3} className='img-fluid' alt='' />
                             </SwiperSlide>
                         </Swiper>
                     </Col>

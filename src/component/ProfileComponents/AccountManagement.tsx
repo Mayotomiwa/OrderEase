@@ -1,6 +1,6 @@
 import { updateProfile } from 'firebase/auth';
 import { useRef, useState } from 'react';
-import { Button, Card, Form } from 'react-bootstrap';
+import { Alert, Button, Card, Form } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
 
@@ -10,7 +10,6 @@ export default function AccountManagement() {
     const emailRef = useRef<HTMLInputElement | null>(null);
     const passwordRef = useRef<HTMLInputElement | null>(null);
     const [error, setError] = useState<string>('')
-    const [loading, setLoading] = useState<boolean>(false)
     const navigate = useNavigate()
     const auth = useAuth();
 
@@ -24,7 +23,6 @@ export default function AccountManagement() {
         e.preventDefault();
 
         const promises = [];
-        setLoading(true);
         if (nameRef.current?.value !== currentUser?.displayName) {
             if (nameRef.current && currentUser) {
                 promises.push(updateProfile(
@@ -49,10 +47,7 @@ export default function AccountManagement() {
             navigate('/profile')
         }).catch(() => {
             setError('Failed to Update Account Information')
-        }).finally(() => {
-            setLoading(false)
-        });
-
+        })
     }
     return (
         <>
@@ -60,6 +55,7 @@ export default function AccountManagement() {
                 <Card className='mb-4 p-3 w-100'>
                     <Card.Header style={{ backgroundColor: '#fff' }}>Profile Details</Card.Header>
                     <Card.Body>
+                        {error && <Alert variant='danger'>{error}</Alert>}
                         <Form action="/submit_form" onSubmit={handleSubmit} method="post">
                             <Form.Group controlId="formName" className='mb-3 p-3'>
                                 <Form.Control ref={nameRef} className='form-input' type="text" placeholder="Full Name" defaultValue={currentUser?.displayName || 'Not logged In'} />

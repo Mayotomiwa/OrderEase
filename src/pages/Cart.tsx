@@ -1,13 +1,14 @@
-import { useEffect, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Button, Card, Container, Stack } from 'react-bootstrap'
 import { useNavigate } from 'react-router-dom'
-import CartItem from '../component/CartComponents/CartItem'
-import CheckOut from '../component/CartComponents/CheckOut'
 import { useCart } from '../contexts/CartContext'
 import '../css/Cart.css'
 import { fetchAllProducts } from '../data/APIs'
 import { Product } from '../types/Products'
 import currency from '../utils/currency'
+
+const CartItem = React.lazy(() => import('../component/CartComponents/CartItem'));
+const CheckOut = React.lazy(() => import('../component/CartComponents/CheckOut'));
 
 export default function Cart() {
     const [confirm, setConfirm] = useState<boolean>(false)
@@ -84,5 +85,4 @@ export default function Cart() {
             </main>
         </Container>
     )
-
 }

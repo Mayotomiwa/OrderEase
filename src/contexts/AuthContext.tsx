@@ -25,7 +25,7 @@ export function useAuth() {
     return useContext(AuthContext)
 }
 
-export function AuthProvider({ children }: AuthProviderProps) {
+function AuthProvider({ children }: AuthProviderProps) {
     const [currentUser, setCurrentUser] = useState<User | null>(null);
     const [loading, setLoading] = useState<Boolean | null>(true)
     const { clearCart } = useCart()
@@ -95,3 +95,5 @@ export function AuthProvider({ children }: AuthProviderProps) {
         </AuthContext.Provider>
     );
 }
+
+export default AuthProvider;

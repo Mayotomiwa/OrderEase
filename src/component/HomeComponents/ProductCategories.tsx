@@ -4,16 +4,17 @@ import { useNavigate } from 'react-router-dom';
 import { useCart } from '../../contexts/CartContext';
 import { useWish } from '../../contexts/WishContext';
 import { fetchCategories, fetchProducts } from '../../data/APIs';
-import Icon1 from '../../icons/icon1';
-import Icon2 from '../../icons/icon2';
-import Icon3 from '../../icons/icon3';
-import Icon4 from '../../icons/icon4';
-import Wish from '../../icons/wishlist';
-import WishFill from '../../icons/wishlistfill';
-import ProductLoader1 from '../../loaders/FlashSalesLoader';
-import TextLoader from '../../loaders/TextLoader';
 import { Product } from '../../types/Products';
-import Separator from '../GeneralComponents/seperator';
+
+const Icon1 = React.lazy(() => import('../../icons/icon1'));
+const Icon2 = React.lazy(() => import('../../icons/icon2'));
+const Icon3 = React.lazy(() => import('../../icons/icon3'));
+const Icon4 = React.lazy(() => import('../../icons/icon4'));
+const Wish = React.lazy(() => import('../../icons/wishlist'));
+const WishFill = React.lazy(() => import('../../icons/wishlistfill'));
+const ProductLoader1 = React.lazy(() => import('../../loaders/FlashSalesLoader'));
+const TextLoader = React.lazy(() => import('../../loaders/TextLoader'));
+const Separator = React.lazy(() => import('../GeneralComponents/seperator'));
 
 export default function ProductCategories() {
     const [wishListState, setWishListState] = useState<Record<number, boolean>>({});
@@ -163,7 +164,7 @@ export default function ProductCategories() {
                     <div className="scroll-container mt-3">
                         {products.map((item, index) => {
                             const quantity = getItemQuantity(item.id)
-                            const isWish = isInWishList(item.id);
+                            // const isWish = isInWishList(item.id);
 
                             return (
 
@@ -172,7 +173,7 @@ export default function ProductCategories() {
                                         <img src={item.image} alt={item.title} className="Api-image" />
                                         <div className="hover-buttons">
                                             <Button variant='text' className='wishlist-button' onClick={(e) => { e.stopPropagation(); handleWish(item.id); }}>
-                                                {isWish ? <WishFill /> : <Wish />}
+                                                {wishListState[item.id] ? <WishFill /> : <Wish />}
                                             </Button>
                                             {quantity === 0 ?
                                                 <Button variant='secondary' className='cart-button addCart' onClick={(e) => { e.stopPropagation(); incItemQuantity(item.id) }}>Add to Cart</Button>

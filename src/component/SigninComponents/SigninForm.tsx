@@ -1,10 +1,11 @@
-import { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Alert, Button, Col, Container, Form, Row, Stack } from 'react-bootstrap';
 import { Bars } from 'react-loading-icons';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAuth } from '../../contexts/AuthContext';
-import Google from '../../icons/google';
-import SignUpLoader from '../../loaders/SignUpLoader';
+
+const SignUpLoader = React.lazy(() => import('../../loaders/SignUpLoader'));
+const Google = React.lazy(() => import('../../icons/google'));
 
 export default function SigninForm() {
     const emailRef = useRef<HTMLInputElement | null>(null);

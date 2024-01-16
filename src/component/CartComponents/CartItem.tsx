@@ -1,11 +1,15 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Button, Container, Stack } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useCart } from "../../contexts/CartContext";
 import { fetchAllProducts } from "../../data/APIs";
-import CartLoader from "../../loaders/CartLoader";
 import { Product } from '../../types/Products';
 import currency from "../../utils/currency";
-import Separator from "../GeneralComponents/seperator";
+
+const CartLoader = React.lazy(() => import('../../loaders/CartLoader'));
+const Separator = React.lazy(() => import('../GeneralComponents/seperator'));
+
+
 
 type CartItemProps = {
     id: number
@@ -16,6 +20,7 @@ export default function CartItem({ id, quantity }: CartItemProps) {
     const { removeFromCart } = useCart()
     const [item, setItem] = useState<Product | null>(null);
     const [loading, setLoading] = useState<boolean>(true)
+    const navigate = useNavigate();
 
     useEffect(() => {
         const getItem = async () => {
@@ -33,7 +38,7 @@ export default function CartItem({ id, quantity }: CartItemProps) {
     return (
         <Container>
             {!loading ? (
-                <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
+                <Stack direction="horizontal" gap={2} className="d-flex align-items-center" onClick={() => navigate(`/products/${item.id}`)}>
                     <img
                         src={item.image}
                         className="cart__img mb-3"
@@ -55,7 +60,7 @@ export default function CartItem({ id, quantity }: CartItemProps) {
                     <Button
                         variant="outline-danger"
                         size="sm"
-                        onClick={() => removeFromCart(item.id)}
+                        onClick={(e) => {e.stopPropagation();  removeFromCart(item.id)}}
                     >
                         &times;
                     </Button>

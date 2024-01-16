@@ -1,10 +1,12 @@
-import { Col, Container, Row } from 'react-bootstrap'
-import AboutImage from '../component/AboutComponents/AboutImage'
-import Stats from '../component/AboutComponents/Stats'
-import Story from '../component/AboutComponents/Story'
-import Team from '../component/AboutComponents/Team'
-import Services from '../component/HomeComponents/Services'
-import '../css/About.css'
+import React from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import '../css/About.css';
+
+const Services = React.lazy(() => import('../component/HomeComponents/Services'));
+const Team = React.lazy(() => import('../component/AboutComponents/Team'));
+const Story = React.lazy(() => import('../component/AboutComponents/Story'));
+const Stats = React.lazy(() => import('../component/AboutComponents/Stats'));
+const AboutImage = React.lazy(() => import('../component/AboutComponents/AboutImage'));
 
 export default function About() {
     return (

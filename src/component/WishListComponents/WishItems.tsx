@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button, Container, Stack } from "react-bootstrap";
+import { useNavigate } from "react-router-dom";
 import { useWish } from "../../contexts/WishContext";
 import { fetchAllProducts } from "../../data/APIs";
 import CartLoader from "../../loaders/CartLoader";
@@ -16,6 +17,7 @@ export default function WishItems({ id, quantity }: WishItemsProps) {
     const { removeFromWishList } = useWish()
     const [item, setItem] = useState<Product | null>(null);
     const [loading, setLoading] = useState<boolean>(true);
+    const navigate = useNavigate()
 
     useEffect(() => {
         const getItem = async () => {
@@ -33,7 +35,7 @@ export default function WishItems({ id, quantity }: WishItemsProps) {
     return (
         <Container>
             {!loading ? (
-                <Stack direction="horizontal" gap={2} className="d-flex align-items-center">
+                <Stack direction="horizontal" gap={2} className="d-flex align-items-center"  onClick={() => navigate(`/products/${item.id}`)}>
                     <img
                         src={item.image}
                         className="cart__img mb-3"
@@ -55,7 +57,7 @@ export default function WishItems({ id, quantity }: WishItemsProps) {
                     <Button
                         variant="outline-danger"
                         size="sm"
-                        onClick={() => removeFromWishList(item.id)}
+                        onClick={(e) => {e.stopPropagation(); removeFromWishList(item.id)}}
                     >
                         &times;
                     </Button>

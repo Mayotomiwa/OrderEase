@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
-import ProjectionsLoader from '../../loaders/ProjectionsLoader';
+
+const ProjectionsLoader = React.lazy(() => import('../../loaders/ProjectionsLoader'));
+
 
 export default function Stats() {
     const [loading, setLoading] = useState<boolean>(true)

@@ -1,20 +1,21 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Card, Col, Container, Row, Stack } from 'react-bootstrap';
 import { useNavigate, useParams } from 'react-router-dom';
-import Separator from '../component/GeneralComponents/seperator';
-import SizeSelector from '../component/ProductComponents/SizeSelector';
 import { useCart } from '../contexts/CartContext';
 import { useWish } from '../contexts/WishContext';
 import '../css/Product.css';
 import { fetchProduct, fetchProducts } from '../data/APIs';
-import Delivery from '../icons/Delivery';
-import Return from '../icons/Return';
-import Wish from '../icons/wishlist';
-import WishFill from '../icons/wishlistfill';
-import ImageLoader from '../loaders/ImageLoader';
-import ProductLoader from '../loaders/PorductLoader';
 import { Product } from '../types/Products';
 import currency from '../utils/currency';
+
+const Separator = React.lazy(() => import('../component/GeneralComponents/seperator'));
+const SizeSelector = React.lazy(() => import('../component/ProductComponents/SizeSelector'));
+const Delivery = React.lazy(() => import('../icons/Delivery'));
+const Return = React.lazy(() => import('../icons/Return'));
+const Wish = React.lazy(() => import('../icons/wishlist'));
+const WishFill = React.lazy(() => import('../icons/wishlistfill'));
+const ImageLoader = React.lazy(() => import('../loaders/ImageLoader'));
+const ProductLoader = React.lazy(() => import('../loaders/ProductLoader'));
 
 export default function ProductDetails() {
     const [product, setProduct] = useState<Product | null>(null);
@@ -79,7 +80,7 @@ export default function ProductDetails() {
 
     return product ? (
         <Container fluid>
-            <Row className='mb-4 mt-4'>
+            <Row className='mb-4 mt-4 me-5'>
                 {!loading ? (
                     <Col lg={5} md={12} xs={12} >
                         <div className='product-item'>
@@ -91,7 +92,7 @@ export default function ProductDetails() {
                     <ImageLoader />
                 )}
                 {!loading ? (
-                    <Col lg={5}>
+                    <Col lg={{ span: 5, offset: 2 }} className='product-actions ml-5'>
                         <h2 className='product-name'>{product.title}</h2>
                         <p className='product-price mb-4'>{currency(product.price)}</p>
                         <p className='product-description'>{product.description}</p>

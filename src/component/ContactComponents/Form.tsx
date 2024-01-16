@@ -1,6 +1,8 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
-import ContactFormLoader from '../../loaders/ContactFormLoader';
+
+const ContactFormLoader = React.lazy(() => import('../../loaders/ContactFormLoader'));
+
 
 export default function ContactForm() {
     const [loading, setLoading] = useState<boolean>(true)

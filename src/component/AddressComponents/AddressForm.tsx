@@ -33,7 +33,6 @@ export default function AddressBook({ user }: AddressBookProps)  {
                     )}
                 </Col>
 
-                {/* ... other sections like Jumia Store Credit and Newsletter Preferences */}
             </Row>
         </Container>
     );

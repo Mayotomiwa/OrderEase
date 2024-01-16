@@ -1,7 +1,10 @@
+import React from 'react';
 import { Col, Container, Row } from "react-bootstrap";
-import ContactForm from "../component/ContactComponents/Form";
-import Info from "../component/ContactComponents/Info";
 import '../css/Contact.css';
+
+const ContactForm = React.lazy(() => import('../component/ContactComponents/Form'));
+const Info = React.lazy(() => import('../component/ContactComponents/Info'));
+
 
 export default function Contact() {
     return (

@@ -1,8 +1,10 @@
+import React from 'react';
 import { Button, Card, Container } from 'react-bootstrap';
 import { useNavigate } from 'react-router-dom';
-import Accounts from '../component/ProfileComponents/Accounts';
 import { useAuth } from '../contexts/AuthContext';
 import '../css/Accounts.css';
+
+const Accounts = React.lazy(() => import('../component/ProfileComponents/Accounts'));
 
 
 export default function Profile() {

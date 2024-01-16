@@ -1,7 +1,10 @@
+import React from "react";
 import { Col, Container, Row } from "react-bootstrap";
-import SigninForm from "../component/SigninComponents/SigninForm";
-import SignUpImage from "../component/SignupComponents/SignUpImage";
 import '../css/SignUp.css';
+
+const SigninForm = React.lazy(() => import('../component/SigninComponents/SigninForm'));
+const SignUpImage = React.lazy(() => import('../component/SignupComponents/SignUpImage'));
+
 
 export default function SignIn() {
     return (
