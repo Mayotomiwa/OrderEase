@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
 import { FaInstagram, FaLinkedin, FaTwitter } from 'react-icons/fa';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
@@ -19,11 +21,8 @@ import UIDesigner1 from '../../assets/UIDesigner1.png';
 import UIDesigner2 from '../../assets/UIDesigner2.png';
 const TeamLoader = React.lazy(() => import('../../loaders/TeamLoader'));
 
-
-
 export default function Team() {
     const [loading, setLoading] = useState<boolean>(true)
-
 
     useEffect(() => {
         const t = setTimeout(() => {
@@ -33,6 +32,7 @@ export default function Team() {
             clearTimeout(t);
         }
     }, []);
+
     return (
         <Container className="swiper" style={{ justifyContent: 'center', }}>
             {!loading ? (
@@ -55,7 +55,7 @@ export default function Team() {
                         <Col xs={12} sm={6} md={4} lg={3}>
                             <SwiperSlide>
                                 <div className='team'>
-                                    <img src= {Founder} className='img-fluid team-img' alt='' />
+                                    <LazyLoadImage src={Founder} className='img-fluid team-img' alt='' effect="blur" />
                                     <h3>Oluwamayotomiwa Ololade</h3>
                                     <p>Founder & Chairman</p>
                                     <div style={{ display: 'flex', marginLeft: 5, justifyContent: 'space-between', width: '120px' }}>
@@ -67,7 +67,7 @@ export default function Team() {
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className='team'>
-                                    <img src={COO} className='img-fluid team-img' alt='' />
+                                    <LazyLoadImage src={COO} className='img-fluid team-img' alt='' effect="blur" />
                                     <h3>Fagbola Gift</h3>
                                     <p>Chief Operations Officer  </p>
                                     <div style={{ display: 'flex', marginLeft: 5, justifyContent: 'space-between', width: '120px' }}>
@@ -79,7 +79,7 @@ export default function Team() {
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className='team'>
-                                    <img src={ProductDesigner} className='img-fluid team-img' alt='' />
+                                    <LazyLoadImage src={ProductDesigner} className='img-fluid team-img' alt='' effect="blur" />
                                     <h3>Femi Bashiru</h3>
                                     <p>Product Designer</p>
                                     <div style={{ display: 'flex', marginLeft: 5, justifyContent: 'space-between', width: '120px' }}>
@@ -91,7 +91,8 @@ export default function Team() {
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className='team'>
-                                    <img src={UIDesigner1} className='img-fluid team-img' alt='' />
+                                    <LazyLoadImage src={UIDesigner1} className='img-fluid team-img' alt='' effect="blur" />
+
                                     <h3>Jeremy Cutter</h3>
                                     <p>UI Desginer 1</p>
                                     <div style={{ display: 'flex', marginLeft: 5, justifyContent: 'space-between', width: '120px' }}>
@@ -103,7 +104,7 @@ export default function Team() {
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className='team'>
-                                    <img src={UIDesigner2}className='img-fluid team-img' alt='' />
+                                    <LazyLoadImage src={UIDesigner2} className='img-fluid team-img' alt='' effect="blur" />
                                     <h3>Babatunde Adams</h3>
                                     <p>UI Designer 2</p>
                                     <div style={{ display: 'flex', marginLeft: 5, justifyContent: 'space-between', width: '120px' }}>
@@ -115,7 +116,7 @@ export default function Team() {
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className='team'>
-                                    <img src={FrontEnd1} className='img-fluid team-img' alt='' />
+                                    <LazyLoadImage src={FrontEnd1} className='img-fluid team-img' alt='' effect="blur" />
                                     <h3>Advik Aditi</h3>
                                     <p>Frontend Engineer 1</p>
                                     <div style={{ display: 'flex', marginLeft: 5, justifyContent: 'space-between', width: '120px' }}>
@@ -127,7 +128,7 @@ export default function Team() {
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className='team'>
-                                    <img src={FrontEnd2} className='img-fluid team-img' alt='' />
+                                    <LazyLoadImage src={FrontEnd2} className='img-fluid team-img' alt='' effect="blur" />
                                     <h3>Chibukwe John</h3>
                                     <p>Frontend Engineer 2</p>
                                     <div style={{ display: 'flex', marginLeft: 5, justifyContent: 'space-between', width: '120px' }}>
@@ -139,7 +140,7 @@ export default function Team() {
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className='team'>
-                                    <img src={BackEnd1} className='img-fluid team-img' alt='' />
+                                    <LazyLoadImage src={BackEnd1} className='img-fluid team-img' alt='' effect="blur" />
                                     <h3>Benjamin Ifeoluwa</h3>
                                     <p>Backend Engineer 1</p>
                                     <div style={{ display: 'flex', marginLeft: 5, justifyContent: 'space-between', width: '120px' }}>
@@ -151,7 +152,7 @@ export default function Team() {
                             </SwiperSlide>
                             <SwiperSlide>
                                 <div className='team'>
-                                    <img src={BackEnd2} className='img-fluid team-img' alt='' />
+                                    <LazyLoadImage src={BackEnd2} className='img-fluid team-img' alt='' effect="blur" />
                                     <h3>Jonas Karim</h3>
                                     <p>Backend Engineer 2</p>
                                     <div style={{ display: 'flex', marginLeft: 5, justifyContent: 'space-between', width: '120px' }}>

@@ -1,4 +1,4 @@
-const Icon4 = () => <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" fill="currentColor" height="60px" width="60px" version="1.1" id="Layer_1" viewBox="0 0 511.999 511.999" xmlSpace="preserve">
+const Icon4 = () => <svg xmlns="http://www.w3.org/2000/svg" xmlnsXlink="http://www.w3.org/1999/xlink" fill="currentColor" height="30px" width="30px" version="1.1" id="Layer_1" viewBox="0 0 511.999 511.999" xmlSpace="preserve">
     <g transform="translate(0 -1)">
         <g>
             <g>

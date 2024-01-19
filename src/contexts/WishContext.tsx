@@ -42,7 +42,7 @@ export default function WishProvider({ children }: WishProviderProps) {
             }
         });
         return () => unsubscribe();
-    }, [])
+    }, [auth])
 
 
     function addToWishList(id: number) {

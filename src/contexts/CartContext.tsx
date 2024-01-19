@@ -42,9 +42,8 @@ export default function CartProvider({ children }: CartProviderProps) {
             }
         });
 
-        // Cleanup subscription on unmount
         return () => unsubscribe();
-    }, [auth]) // Added auth to the dependency array
+    }, [auth])
 
 
     const cartQuantity = cartItems.reduce((quantity, item) => item.quantity + quantity, 0)

@@ -25,19 +25,22 @@ export default function ViewFlash({ showModal, onClose }: ViewFlashProps) {
     const navigate = useNavigate();
 
     useEffect(() => {
-        const getAllProducts = async () => {
+        const getProducts = async () => {
             const data = await fetchData();
             setFlashSales(data);
-            const initialWishStates: Record<number, boolean> = {};
-            data.forEach((product: Product) => {
-                initialWishStates[product.id] = isInWishList(Number(product.id));
-            });
-            setWishStates(initialWishStates);
             setLoading(false)
         };
 
-        getAllProducts();
+        getProducts();
     }, []);
+    useEffect(() => {
+        const initialWishStates: Record<number, boolean> = {};
+        flashSales.forEach((flashSale: Product) => {
+            initialWishStates[flashSale.id] = isInWishList(Number(flashSale.id));
+        });
+        setWishStates(initialWishStates);
+    }, [flashSales]);
+
 
     return (
         <Container fluid className='w-100'>

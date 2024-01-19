@@ -6,8 +6,8 @@ import { useData } from '../../contexts/AddressContext';
 import { useAuth } from '../../contexts/AuthContext';
 import '../../css/SignUp.css';
 
-export default function AddressForm() {
-    const { data, setData, saveData } = useData();
+export default function EditAddress() {
+    const { data, setData, updateData } = useData();
     const [error, setError] = useState('');
     const [loading, setLoading] = useState(false)
     const navigate = useNavigate();
@@ -32,18 +32,18 @@ export default function AddressForm() {
             try {
                 setError('')
                 setLoading(true)
-                await saveData(data);
+                await updateData(data);
                 navigate('/profile')
             } catch (e) {
-                setError('Failed To Add Address')
+                setError('Failed To Update Address')
             }
         }
     };
 
     return (
         <Container fluid>
-            <h2 className='p-3'>Address</h2>
-            <p className='p-3'>Enter Your Address Below</p>
+            <h2 className='p-3'>Change Address</h2>
+            <p className='p-3'>Enter Your New Address Below</p>
             {error && <Alert variant='danger'>{error}</Alert>}
             <Form action="/submit_form" method="post">
                 <Form.Group controlId="formName" className='mb-3 p-3'>
@@ -66,7 +66,7 @@ export default function AddressForm() {
                     {loading ? (
                         <Bars width={"100%"} strokeWidth={"100%"} height={'100%'} stroke='none' />
                     ) : (
-                        "Submit"
+                        "Update"
                     )}
                 </Button>
             </Form>

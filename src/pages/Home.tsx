@@ -25,7 +25,7 @@ export default function Home() {
                 </Col>
             </Row>
             <Row>
-                <FlashSales onButtonClick={() => setShowFlashModal(true)} />
+                <FlashSales onButtonClick={(e: React.MouseEvent) => { e.preventDefault(); setShowFlashModal(true)}} />
                 <ViewFlash showModal={showFlashModal} onClose={() => setShowFlashModal(false)} />
             </Row>
             <Container fluid style={{ paddingLeft: '5%', paddingRight: '5%' }}>
@@ -33,7 +33,7 @@ export default function Home() {
             </Container>
             <ProductCategories />
             <Ad />
-            <ProductsComponent onButtonClick={() => setShowModal(true)} />
+            <ProductsComponent onButtonClick={(e: React.MouseEvent) => { e.preventDefault(); setShowModal(true)}} />
             <ViewProducts showModal={showModal} onClose={() => setShowModal(false)} />
             <Featured />
             <Services />

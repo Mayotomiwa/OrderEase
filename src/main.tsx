@@ -16,17 +16,23 @@ const App = React.lazy(() => import('./App.tsx'));
 const AuthProvider = React.lazy(() => import('./contexts/AuthContext.tsx'));
 const CartProvider = React.lazy(() => import('./contexts/CartContext.tsx'));
 const WishProvider = React.lazy(() => import('./contexts/WishContext.tsx'));
+const AddressProvider = React.lazy(() => import('./contexts/AddressContext'));
+const Instagram = React.lazy(() => import('react-content-loader'));
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
     <BrowserRouter>
-      <CartProvider>
-        <WishProvider>
-          <AuthProvider>
-            <App />
-          </AuthProvider>
-        </WishProvider>
-      </CartProvider>
+      <React.Suspense fallback={<Instagram />}>
+        <CartProvider>
+          <WishProvider>
+            <AddressProvider>
+              <AuthProvider>
+                <App />
+              </AuthProvider>
+            </AddressProvider>
+          </WishProvider>
+        </CartProvider>
+      </React.Suspense>
     </BrowserRouter>
   </React.StrictMode>,
 )

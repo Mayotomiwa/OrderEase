@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Container, Row } from 'react-bootstrap';
+import { LazyLoadImage } from 'react-lazy-load-image-component';
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import 'swiper/css';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-fade';
@@ -14,6 +16,7 @@ const SwiperLoader = React.lazy(() => import('../../loaders/Adloader'));
 
 export default function SwiperFile() {
     const [loading, setLoading] = useState<boolean>(true)
+
     useEffect(() => {
         const t = setTimeout(() => {
             setLoading(false)
@@ -22,6 +25,7 @@ export default function SwiperFile() {
             clearTimeout(t);
         }
     }, []);
+
     return (
         <Container>
             {!loading ? (
@@ -38,13 +42,13 @@ export default function SwiperFile() {
                             style={{ width: '100%', marginTop: '2%', backgroundColor: 'black' }}
                         >
                             <SwiperSlide>
-                                <img src= {Slide1} className='img-fluid' alt='' />
+                                <LazyLoadImage src={Slide1} className='img-fluid' alt='' effect="blur" />
                             </SwiperSlide>
                             <SwiperSlide>
-                                <img src= {Slide2} className='img-fluid' alt='' />
+                                <LazyLoadImage src={Slide2} className='img-fluid' alt='' effect="blur" />
                             </SwiperSlide>
                             <SwiperSlide>
-                                <img src= {Slide3} className='img-fluid' alt='' />
+                                <LazyLoadImage src={Slide3} className='img-fluid' alt='' effect="blur" />
                             </SwiperSlide>
                         </Swiper>
                     </Col>

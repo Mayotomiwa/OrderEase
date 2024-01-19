@@ -76,22 +76,7 @@ export default function ProductCategories() {
             newWishListState[product.id] = isInWishList(product.id);
         });
         setWishListState(newWishListState);
-    }, [products, isInWishList]);
-
-    function handleWish(productId: number) {
-        setWishListState(prevState => {
-            const isWish = !prevState[productId];
-            if (isWish) {
-                addToWishList(productId);
-            } else {
-                removeFromWishList(productId);
-            }
-            return {
-                ...prevState,
-                [productId]: isWish,
-            };
-        });
-    }
+    }, [products]);
 
     return (
         <>
@@ -102,10 +87,10 @@ export default function ProductCategories() {
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="0 0 20 40" fill="none">
                                 <rect width="20" height="40" rx="4" fill="#DB4444" />
                             </svg>
-                            <h3 style={{ color: '#db4444' }}>Categories</h3>
+                            <h5 style={{ color: '#db4444' }}>Categories</h5>
                         </Stack>
                         <Stack direction='horizontal'>
-                            <h3 className='sales mb-4 me-auto'>Browse By Category</h3>
+                            <h5 className='sales mb-4 me-auto'>Browse By Category</h5>
                         </Stack>
                     </>
                 ) : (
@@ -148,11 +133,11 @@ export default function ProductCategories() {
                             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="0 0 20 40" fill="none">
                                 <rect width="20" height="40" rx="4" fill="#DB4444" />
                             </svg>
-                            <h3 style={{ color: '#db4444' }}>Selected Category</h3>
+                            <h5 style={{ color: '#db4444' }}>Selected Category</h5>
 
                         </Stack>
                         <Stack direction='horizontal'>
-                            <h3 className='sales me-auto'>Items From {selectedCategory}</h3>
+                            <h5 className='sales me-auto'>Items From {selectedCategory}</h5>
                         </Stack>
                     </>
                 ) : (
@@ -165,10 +150,23 @@ export default function ProductCategories() {
                         {products.map((item, index) => {
                             const quantity = getItemQuantity(item.id)
                             // const isWish = isInWishList(item.id);
-
+                            function handleWish(productId: number) {
+                                setWishListState(prevState => {
+                                    const isWish = !prevState[productId];
+                                    if (isWish) {
+                                        addToWishList(productId);
+                                    } else {
+                                        removeFromWishList(productId);
+                                    }
+                                    return {
+                                        ...prevState,
+                                        [productId]: isWish,
+                                    };
+                                });
+                            }
                             return (
 
-                                <div key={index} className="item-container">
+                                <div key={index} className="product-container">
                                     <div className="scroll-item" onClick={() => navigate(`/products/${item.id}`)}>
                                         <img src={item.image} alt={item.title} className="Api-image" />
                                         <div className="hover-buttons">

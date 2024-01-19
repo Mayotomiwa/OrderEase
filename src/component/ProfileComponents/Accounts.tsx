@@ -43,7 +43,6 @@ export default function Accounts() {
             <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Vouchers')}>Vouchers</ListGroup.Item>
             <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Saved Items')}>Saved Items</ListGroup.Item>
             <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Account Management')}>Account Management</ListGroup.Item>
-            <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Address Book')}>Address Book</ListGroup.Item>
             <ListGroup.Item style={{ border: 'none' }} onClick={() => handleItemClick('Log Out')}>Log Out</ListGroup.Item>
         </ListGroup>
     );

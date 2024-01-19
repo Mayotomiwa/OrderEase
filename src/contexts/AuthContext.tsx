@@ -6,6 +6,7 @@ import { useWish } from "./WishContext";
 
 type AuthContextProps = {
     currentUser: User | null;
+    loading: boolean;
     register: (name: string, email: string, password: string) => Promise<User>;
     login: (email: string, password: string) => Promise<User>;
     loginWithGoogle: () => Promise<User>;
@@ -27,7 +28,7 @@ export function useAuth() {
 
 function AuthProvider({ children }: AuthProviderProps) {
     const [currentUser, setCurrentUser] = useState<User | null>(null);
-    const [loading, setLoading] = useState<Boolean | null>(true)
+    const [loading, setLoading] = useState<boolean>(true)
     const { clearCart } = useCart()
     const { clearWishList } = useWish();
 
@@ -80,6 +81,7 @@ function AuthProvider({ children }: AuthProviderProps) {
 
     const value = {
         currentUser,
+        loading,
         register,
         login,
         loginWithGoogle,

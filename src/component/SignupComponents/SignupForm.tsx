@@ -121,7 +121,7 @@ export default function SignupForm() {
                         {!googleloading ? (
                             <Stack direction='horizontal' className="justify-content-center align-items-center">
                                 <Google />
-                                <h5 className='ms-3'>
+                                <h5 className='ml-3'>
                                     Go with Google
                                 </h5>
                             </Stack>

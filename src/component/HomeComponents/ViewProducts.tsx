@@ -37,6 +37,13 @@ export default function ViewProducts({ showModal, onClose }: ViewProductProps) {
 
         getAllProducts();
     }, []);
+    useEffect(() => {
+        const initialWishStates: Record<number, boolean> = {};
+        relatedProducts.forEach((relatedProduct: Product) => {
+            initialWishStates[relatedProduct.id] = isInWishList(Number(relatedProduct.id));
+        });
+        setWishStates(initialWishStates);
+    }, [relatedProducts]);
 
     return (
         <Container fluid className='w-100'>

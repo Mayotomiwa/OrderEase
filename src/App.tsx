@@ -1,6 +1,5 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
-import { Instagram } from 'react-content-loader';
 import { Route, Routes } from 'react-router-dom';
 import Footer from './component/GeneralComponents/Footer';
 import NavBar from './component/GeneralComponents/NavBar';
@@ -16,13 +15,14 @@ const Profile = React.lazy(() => import('./pages/Profile'));
 const SignIn = React.lazy(() => import('./pages/SignIn'));
 const SignUp = React.lazy(() => import('./pages/SignUp'));
 const WishList = React.lazy(() => import('./pages/WishList'));
+const Address = React.lazy(() => import('./component/ProfileComponents/Address'));
+const Edit = React.lazy(() => import('./component/ProfileComponents/Edit'));
 
 export default function App() {
   return (
     <>
       <NavBar />
       <Container fluid className='mb-4'>
-        <React.Suspense fallback={<Instagram />}>
           <Routes>
             <Route path='/' element={<Home />} />
             <Route path='/contact' element={<Contact />} />
@@ -35,8 +35,9 @@ export default function App() {
             <Route path='/forgotpassword' element={<ForgotPassword />} />
             <Route path='/products/:id' element={<Products/>} />
             <Route path='/checkout' element={<CheckOut />} />
+            <Route path='/address' element={<Address />} />
+            <Route path='/edit' element={<Edit />} />
           </Routes>
-        </React.Suspense>
       </Container>
       <Footer />
     </>

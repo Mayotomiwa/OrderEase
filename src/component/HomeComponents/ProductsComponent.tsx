@@ -13,8 +13,9 @@ const TextLoader = React.lazy(() => import('../../loaders/TextLoader'));
 
 
 type ProductsComponentProps = {
-    onButtonClick: () => void;
+    onButtonClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
+
 
 export default function ProductsComponent({ onButtonClick }: ProductsComponentProps) {
     const [wishStates, setWishStates] = useState<Record<number, boolean>>({});
@@ -42,16 +43,19 @@ export default function ProductsComponent({ onButtonClick }: ProductsComponentPr
         const getAllProducts = async () => {
             const data = await fetchAllProducts();
             setAllproducts(data);
-            const initialWishStates: Record<number, boolean> = {};
-            data.forEach((product: Product) => {
-                initialWishStates[product.id] = isInWishList(Number(product.id));
-            });
-            setWishStates(initialWishStates);
+
             setLoading(false)
         };
 
         getAllProducts();
     }, []);
+    useEffect(() => {
+        const initialWishStates: Record<number, boolean> = {};
+        allproducts.forEach((allproduct: Product) => {
+            initialWishStates[allproduct.id] = isInWishList(Number(allproduct.id));
+        });
+        setWishStates(initialWishStates);
+    }, [allproducts]);
 
     return (
         <Container fluid className='allProducts px-lg-5 mb-5 mt-5'>
@@ -61,10 +65,10 @@ export default function ProductsComponent({ onButtonClick }: ProductsComponentPr
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="0 0 20 40" fill="none">
                             <rect width="20" height="40" rx="4" fill="#DB4444" />
                         </svg>
-                        <h3 style={{ color: '#db4444' }}>Our Products</h3>
+                        <h5 style={{ color: '#db4444' }}>Our Products</h5>
                     </Stack>
                     <Stack direction='horizontal'>
-                        <h3 className='sales me-auto'>Explore Our Products</h3>
+                        <h5 className='sales me-auto'>Explore Our Products</h5>
                         <div className='scroll-buttons'>
                             <Button variant='danger' onClick={() => scroll('left')} className='scroll'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -128,7 +132,7 @@ export default function ProductsComponent({ onButtonClick }: ProductsComponentPr
                         })}
                     </div>
                     <div className="button-container">
-                        <Button variant='danger' className='flash-btn' onClick={() => { onButtonClick() }}>View All Products</Button>
+                        <Button variant='danger' className='flash-btn' onClick={(e) => { onButtonClick(e) }}>View All Products</Button>
                     </div>
                 </>
             ) : (

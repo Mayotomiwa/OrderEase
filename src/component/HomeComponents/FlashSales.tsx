@@ -14,7 +14,7 @@ const TextLoader = React.lazy(() => import('../../loaders/TextLoader'));
 
 
 type FlashSalesProps = {
-    onButtonClick: () => void;
+    onButtonClick: (event: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
 }
 
 export default function FlashSales({ onButtonClick }: FlashSalesProps) {
@@ -31,17 +31,21 @@ export default function FlashSales({ onButtonClick }: FlashSalesProps) {
     useEffect(() => {
         const getData = async () => {
             const data = await fetchData();
-            setState(data);
-            const initialWishStates: Record<number, boolean> = {};
-            data.forEach((state: Product) => {
-                initialWishStates[state.id] = isInWishList(Number(state.id));
-            });
-            setWishStates(initialWishStates);
             setLoading(false);
+            setState(data);
         };
-    
         getData();
     }, []);
+
+    useEffect(() => {
+        const initialWishStates: Record<number, boolean> = {};
+        state.forEach((states: Product) => {
+            initialWishStates[states.id] = isInWishList(Number(states.id));
+        });
+        setWishStates(initialWishStates);
+    }, [state]);
+
+
 
     const scroll = (direction: 'left' | 'right') => {
         if (scrollContainerRef.current && scrollContainerRef.current.firstChild) {
@@ -65,10 +69,10 @@ export default function FlashSales({ onButtonClick }: FlashSalesProps) {
                         <svg xmlns="http://www.w3.org/2000/svg" width="20" height="40" viewBox="0 0 20 40" fill="none">
                             <rect width="20" height="40" rx="4" fill="#DB4444" />
                         </svg>
-                        <h3 style={{ color: '#db4444' }}>Today's</h3>
+                        <h5 style={{ color: '#db4444' }}>Today's</h5>
                     </Stack>
                     <Stack direction='horizontal'>
-                        <h3 className='sales me-auto'>Flash Sales</h3>
+                        <h5 className='sales me-auto'>Flash Sales</h5>
                         <div className='scroll-buttons'>
                             <Button variant='danger' onClick={() => scroll('left')} className='scroll'>
                                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
@@ -132,7 +136,7 @@ export default function FlashSales({ onButtonClick }: FlashSalesProps) {
                         })}
                     </div>
                     <div className="button-container">
-                        <Button variant='danger' className='flash-btn' onClick={() => { onButtonClick() }}>View Products</Button>
+                        <Button variant='danger' className='flash-btn' onClick={(e) => { onButtonClick(e) }}>View Products</Button>
                     </div>
                 </>
             ) : (
